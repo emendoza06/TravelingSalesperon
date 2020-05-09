@@ -65,8 +65,12 @@
             <p class="w3-border w3-padding-large w3-padding-64 w3-center">INSERT TSP MAP HERE</p>
         </div>
         <div class="w3-third w3-container">
-            <h1 class="w3-text-teal"><b>Go to the Zoo</b></h1>
-            <p>It's a beautiful day at the Zoo and all of the animals are awake and ready to play! Will you get to see them all before they take thir naps? Visit each animal and use the quickest route to get there.</p>
+            <h1 class="w3-text-teal"><b>Go to the Zoo</b>
+                <audio controls>
+                    <source src = "../../resources/audio/ZooAudio.mp4" type="audio/mpeg">Your browser does not support the audio element</audio>
+                </audio>
+            </h1>
+            <p>It's a beautiful day at the Zoo and all of the animals are awake and ready to play! What's the shortest route to take around the Zoo before the animals take their naps?</p>
         </div>
 
 

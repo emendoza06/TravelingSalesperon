@@ -84,17 +84,17 @@
             <hr>
 
             <h1><b>To the Moon and back</b> <a href="/k2Moon"><span class="w3-right w3-tag w3-dark-grey w3-round w3-hover-red">Start</span></a> </h1>
-            <p class="w3-text-grey">Explore all the planets on your trip throughout the galaxy</p>
+            <p class="w3-text-grey">Explore all the stars on your trip throughout the galaxy</p>
             <hr>
 
         </div>
 
         <div id="Pasta" class="w3-container menu w3-padding-32 w3-white">
-            <h1><b>Shopping Spree!</b> <span class="w3-tag w3-grey w3-round">Popular</span><a href="/35Shop"> <span class="w3-right w3-tag w3-dark-grey w3-round w3-hover-red">Start</span></a></h1>
+            <h1><b>Shopping Spree!</b> <span class="w3-tag w3-grey w3-round">Popular</span><a href="/shopping"> <span class="w3-right w3-tag w3-dark-grey w3-round w3-hover-red">Start</span></a></h1>
             <p class="w3-text-grey">It's time to shop til you drop and visit every store along the way</p>
             <hr>
 
-            <h1><b>Trick or Treat</b> <a href="/35Treat"><span class="w3-right w3-tag w3-dark-grey w3-round w3-hover-red">Start</span></a></h1>
+            <h1><b>Trick or Treat</b> <a href="/trickorTreat"><span class="w3-right w3-tag w3-dark-grey w3-round w3-hover-red">Start</span></a></h1>
             <p class="w3-text-grey">Can you get all the candy in your neighborhood?</p>
             <hr>
 
@@ -102,12 +102,12 @@
 
 
         <div id="Starter" class="w3-container menu w3-padding-32 w3-white">
-            <h1><b>Lost Phone</b> <span class="w3-tag w3-grey w3-round">New!</span><a href="/68Phone"><span class="w3-right w3-tag w3-dark-grey w3-round w3-hover-red">Start</span></a></h1>
+            <h1><b>Lost Phone</b> <span class="w3-tag w3-grey w3-round">New!</span><a href="/phone"><span class="w3-right w3-tag w3-dark-grey w3-round w3-hover-red">Start</span></a></h1>
             <p class="w3-text-grey">Uh-oh, you lost your phone. Retrace your steps by visiting all the places you've been</p>
             <hr>
 
-            <h1><b>Theme Park</b> <a href="/68Park"><span class="w3-right w3-tag w3-dark-grey w3-round w3-hover-red">Start</span></a></h1>
-            <p class="w3-text-grey">It's your class trip to the amusement park. Can you visit all the rides? </p>
+            <h1><b>Theme Park</b> <a href="/themePark"><span class="w3-right w3-tag w3-dark-grey w3-round w3-hover-red">Start</span></a></h1>
+            <p class="w3-text-grey">It's your class trip to the amusement park. Can you ride all the rides? </p>
             <hr>
 
         </div><br>
