@@ -1,4 +1,7 @@
 var cities = [];
+var points = [];
+var totalLines = [];
+
 var totalCities = 5;
 
 var order = [];
@@ -9,6 +12,9 @@ var count = 0;
 var recordDistance;
 var bestEver;
 
+var stillLooping = true;
+
+
 function setup() {
   var canvas = createCanvas(600, 229);
   canvas.parent("sketch-holder");
@@ -16,7 +22,16 @@ function setup() {
     var v = createVector(random(width), random(height / 2));
     cities[i] = v;
     order[i] = i;
+
+    var x = cities[i].x;
+    var y = cities[i].y;
+    var r = 15;
+    var label = String.fromCharCode(65 + i);
+    point = new Point(x,y,r, label);
+    points.push(point);
+
   }
+
 
   var d = calcDistance(cities, order);
   recordDistance = d;
@@ -27,50 +42,82 @@ function setup() {
 }
 
 function draw() {
+  if(stillLooping){
   background(0);
   frameRate(5);
   fill(255);
-  for (var i = 0; i < cities.length; i++) {
-    ellipse(cities[i].x, cities[i].y, 8, 8);
+  for(var p = 0; p < points.length; p++){
+    points[p].show();
   }
 
-  stroke(255, 0, 255);
-  strokeWeight(4);
-  noFill();
-  beginShape();
-  for (var i = 0; i < order.length; i++) {
-    var n = bestEver[i];
-    vertex(cities[n].x, cities[n].y);
+    for (var i = 0; i < cities.length; i++) {
+      ellipse(cities[i].x, cities[i].y, 8, 8);
+    }
+
+    stroke(255, 0, 255);
+    strokeWeight(4);
+    noFill();
+    beginShape();
+    for (var i = 0; i < order.length; i++) {
+      var n = bestEver[i];
+      vertex(cities[n].x, cities[n].y);
+    }
+    endShape();
+
+    translate(0, height / 2);
+    stroke(255);
+    strokeWeight(1);
+    noFill();
+    /* beginShape();
+    for (var i = 0; i < order.length; i++) {
+      var n = order[i];
+      vertex(cities[n].x, cities[n].y);
+    }
+    endShape(); */
+
+    var d = calcDistance(cities, order);
+    if (d < recordDistance) {
+      recordDistance = d;
+      bestEver = order.slice();
+    }
+
+    textSize(32);
+    // var s = '';
+    // for (var i = 0; i < order.length; i++) {
+    //   s += order[i];
+    // }
+    fill(255);
+    var percent = 100 * (count / totalPermutations);
+    text(nf(percent, 0, 2) + "% completed", 20, height / 2 - 50);
+
+    nextOrder();
   }
-  endShape();
+  else{
+    //When computer has finished calculating, clear everything
+    clear();
+    background(0);
+    fill(255);
+    frameRate(5);
+    fill(255);
+    //Regenerate Points
+    for(var p = 0; p < points.length; p++){
+      points[p].show();
+    }
 
-  translate(0, height / 2);
-  stroke(255);
-  strokeWeight(1);
-  noFill();
-  /* beginShape();
-  for (var i = 0; i < order.length; i++) {
-    var n = order[i];
-    vertex(cities[n].x, cities[n].y);
+    stroke(255, 0, 255);
+    strokeWeight(4);
+    noFill();
+    //Draw a line for each point clicked on
+    beginShape();
+    for (var i = 0; i < totalLines.length; i++) {
+      vertex(totalLines[i].x, totalLines[i].y);
+    }
+    endShape();
+
+
   }
-  endShape(); */
 
-  var d = calcDistance(cities, order);
-  if (d < recordDistance) {
-    recordDistance = d;
-    bestEver = order.slice();
-  }
 
-  textSize(32);
-  // var s = '';
-  // for (var i = 0; i < order.length; i++) {
-  //   s += order[i];
-  // }
-  fill(255);
-  var percent = 100 * (count / totalPermutations);
-  text(nf(percent, 0, 2) + "% completed", 20, height / 2 - 50);
-
-  nextOrder();
 }
 
 function swap(a, i, j) {
@@ -106,8 +153,10 @@ function nextOrder() {
     }
   }
   if (largestI == -1) {
-    noLoop();
+    // noLoop();
+    stillLooping = false;
     console.log("finished");
+    clear();
   }
 
   // STEP 2
@@ -133,4 +182,61 @@ function factorial(n) {
   } else {
     return n * factorial(n - 1);
   }
+}
+
+function mousePressed(){
+  for(var i = 0; i < points.length; i++) {
+    points[i].clicked(mouseX, mouseY);
+  }
+}
+
+
+
+class Point {
+  constructor(x, y, r, label) {
+    this.x = x;
+    this.y = y;
+    this.r = r;
+    this.brightness = 0;
+    this.toggled = false;
+    this.label = label;
+
+  }
+
+//When point is clicked, pass in mouse location
+  clicked(px, py) {
+    var d = dist(px, py, this.x, this.y); //Find difference between current mouse location and point
+    //If mouse is within object radius
+    if (d < this.r) {
+      //When point is clicked...
+      if (!this.toggled) {
+        //Toggled is true
+        this.toggled = true;
+        //change color
+        this.brightness = 255;
+
+        //Idea 1
+        //If mouse click is within radius of point, then push point to totalLines array
+        totalLines.push(this);
+
+        //Else the same point was clicked on again
+      } else {
+        this.toggled = false;
+        //Turn color off
+        this.brightness = 0;
+      }
+    }
+  }
+
+//Show points
+  show() {
+    stroke(355);
+    strokeWeight(3);
+    fill(this.brightness, 125);
+    ellipse(this.x, this.y, this.r * 2);
+    //Show point label
+    text(this.label, this.x - this.r / 4, this.y - this.r / 4.5);
+  }
+
+
 }
