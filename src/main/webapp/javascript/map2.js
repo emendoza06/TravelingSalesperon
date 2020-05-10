@@ -8,7 +8,7 @@ var order = [];
 
 var totalPermutations;
 var count = 0;
-var HTMLcontext;
+
 var recordDistance;
 var bestEver;
 
@@ -16,8 +16,7 @@ var stillLooping = true;
 
 function setup() {
   var canvas = createCanvas(600, 229);
-  canvas.parent("sketch-holder");
-
+  canvas.parent("sketch-holder1");
   for (var i = 0; i < totalCities; i++) {
     var v = createVector(random(width), random(height / 2));
     cities[i] = v;
@@ -29,7 +28,7 @@ function setup() {
     var label = String.fromCharCode(65 + i);
     point = new Point(x, y, r, label);
     points.push(point);
-    totalLines.push(point);
+    // totalLines.push(point);
   }
 
   var d = calcDistance(cities, order);
@@ -97,7 +96,14 @@ function draw() {
       points[p].show();
     }
 
-    //linkPoints();
+    stroke(255, 0, 255);
+    strokeWeight(4);
+    noFill();
+    beginShape();
+    for (var i = 0; i < totalLines.length; i++) {
+      vertex(totalLines[i].x, totalLines[i].y);
+    }
+    endShape();
   }
 }
 
@@ -217,7 +223,7 @@ class Point {
         this.toggled = false;
         this.brightness = 0;
       }
-      console.log("Clicked on point!!!");
+      // console.log("Clicked on point!!!");
     }
   }
 
@@ -230,21 +236,5 @@ class Point {
   }
 }
 
-function linkPoints() {
-  console.log("In linkPoints function");
-  stroke(355);
-  strokeWeight(2);
-  //These for loops group 2 pairs of points to send to  built-in line function
-  for (var p = 0; p < totalLines.length / 2; p++) {
-    for (var set = 0; set < 2; set++) {
-      line(
-        totalLines[set].x,
-        totalLines[set].y,
-        totalLines[set + 1].x,
-        totalLines[set + 1].y,
-      );
-    }
-  }
+// line(twoPointstoLink[0], twoPointstoLink[1], twoPointstoLink[2], twoPointstoLink[3]);
 
-  // line(twoPointstoLink[0], twoPointstoLink[1], twoPointstoLink[2], twoPointstoLink[3]);
-}
