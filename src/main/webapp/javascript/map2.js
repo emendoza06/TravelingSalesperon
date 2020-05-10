@@ -8,7 +8,7 @@ var order = [];
 
 var totalPermutations;
 var count = 0;
-
+var HTMLcontext;
 var recordDistance;
 var bestEver;
 
@@ -16,7 +16,8 @@ var stillLooping = true;
 
 function setup() {
   var canvas = createCanvas(600, 229);
-  canvas.parent("sketch-holder1");
+  canvas.parent("sketch-holder");
+
   for (var i = 0; i < totalCities; i++) {
     var v = createVector(random(width), random(height / 2));
     cities[i] = v;
@@ -96,7 +97,7 @@ function draw() {
       points[p].show();
     }
 
-    linkPoints();
+    //linkPoints();
   }
 }
 
@@ -216,7 +217,7 @@ class Point {
         this.toggled = false;
         this.brightness = 0;
       }
-      // console.log("Clicked on point!!!");
+      console.log("Clicked on point!!!");
     }
   }
 
