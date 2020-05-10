@@ -13,6 +13,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+<script
+    language="javascript"
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"
+  ></script>
+
+  <script type="text/javascript" src="javascript/map2.js"></script>
 <style>
     html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     .w3-sidebar {
