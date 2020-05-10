@@ -24,6 +24,13 @@
     body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
     .menu {display: none}
 </style>
+<script
+    language="javascript"
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"
+  ></script>
+
+  <script type="text/javascript" src="javascript/map.js"></script>
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -62,7 +69,11 @@
         <h1><b>Traveling SalesPerson</b></h1>
         <div class="w3-twothird w3-container">
             <p class="w3-border w3-padding-large w3-padding-32 w3-center">INSERT TSP FORMULA HERE</p>
-            <p class="w3-border w3-padding-large w3-padding-64 w3-center">INSERT TSP MAP HERE</p>
+            <div
+            id="sketch-holder" class="w3-border w3-padding-large w3-padding-64 w3-center"
+            > 
+            
+          </div>
         </div>
         <div class="w3-third w3-container">
             <h1 class="w3-text-teal"><b>Go to the Zoo</b>
