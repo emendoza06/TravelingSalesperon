@@ -30,7 +30,7 @@
     src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"
   ></script>
 
-  <script type="text/javascript" src="javascript/map.js"></script>
+  <script type="text/javascript" src="javascript/map2.js"></script>
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -70,7 +70,7 @@
         <div class="w3-twothird w3-container">
             <p class="w3-border w3-padding-large w3-padding-32 w3-center">INSERT TSP FORMULA HERE</p>
             <div
-            id="sketch-holder" class="w3-border w3-padding-large w3-padding-64 w3-center"
+            id="sketch-holder1" class="w3-border w3-padding-large w3-padding-64 w3-center"
             > 
             
           </div>
