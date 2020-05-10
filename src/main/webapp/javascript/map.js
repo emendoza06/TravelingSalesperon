@@ -29,6 +29,7 @@ function setup() {
     var label = String.fromCharCode(65 + i);
     point = new Point(x,y,r, label);
     points.push(point);
+    // totalLines.push(point);
 
   }
 
@@ -93,21 +94,19 @@ function draw() {
     nextOrder();
   }
   else{
-    //When computer has finished calculating, clear everything
     clear();
+    console.log("went to clear");
     background(0);
     fill(255);
     frameRate(5);
     fill(255);
-    //Regenerate Points
     for(var p = 0; p < points.length; p++){
       points[p].show();
     }
-
+    //
     stroke(255, 0, 255);
     strokeWeight(4);
-    noFill();
-    //Draw a line for each point clicked on
+        noFill();
     beginShape();
     for (var i = 0; i < totalLines.length; i++) {
       vertex(totalLines[i].x, totalLines[i].y);
@@ -210,7 +209,6 @@ class Point {
     if (d < this.r) {
       //When point is clicked...
       if (!this.toggled) {
-        //Toggled is true
         this.toggled = true;
         //change color
         this.brightness = 255;
@@ -219,24 +217,57 @@ class Point {
         //If mouse click is within radius of point, then push point to totalLines array
         totalLines.push(this);
 
-        //Else the same point was clicked on again
+        //Idea 3
+        //Save order that points are clicked and then draw line after all points have been selected
+
+
+        //Idea 2
+        //if (x1 = x2 and y1 = y2) then points are equal. Pop.
+      //   if (twoPointstoLink[0] === twoPointstoLink[2] && twoPointstoLink[1] === twoPointstoLink[3]) {
+      //     console.log("Two points equal");
+      //     twoPointstoLink.pop();
+      //     twoPointstoLink.pop();
+      //
+      //   }
+        //If (x1, y1, x2, y2) points are not equal then go to linkPoints function
+      //   if (twoPointstoLink.length !==4) {
+      //     console.log("Length not four");
+      //   } else if(twoPointstoLink.length === 4 && twoPointstoLink[0] !== twoPointstoLink[2] && twoPointstoLink[1] !== twoPointstoLink[3]){
+      //       linkPoints();
+      //   }
+      //
+      //   console.log("Two points array length is " + twoPointstoLink.length);
+      //
       } else {
         this.toggled = false;
-        //Turn color off
         this.brightness = 0;
       }
+      // console.log("Clicked on point!!!");
     }
   }
 
-//Show points
-  show() {
+
+  show(){
     stroke(355);
     strokeWeight(3);
     fill(this.brightness, 125);
-    ellipse(this.x, this.y, this.r * 2);
-    //Show point label
-    text(this.label, this.x - this.r / 4, this.y - this.r / 4.5);
+    ellipse(this.x, this.y, this.r *2);
+    text(this.label, this.x-this.r/4, this.y-this.r/4.5);
   }
 
 
+//
+// function linkPoints(){
+//   console.log("In linkPoints function" );
+//   stroke(355);
+//   strokeWeight(2);
+//  //These for loops group 2 pairs of points to send to  built-in line function
+//   for(var p = 0; p < totalLines.length /2; p++){
+//     for(var set = 0; set < 2; set++){
+//       line(totalLines[set].x, totalLines[set].y, totalLines[set+1].x, totalLines[set+1].y);
+//     }
+//   }
+
+  // line(twoPointstoLink[0], twoPointstoLink[1], twoPointstoLink[2], twoPointstoLink[3]);
 }
+

@@ -30,7 +30,7 @@
     src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"
   ></script>
 
-  <script type="text/javascript" src="javascript/map2.js"></script>
+  <script type="text/javascript" src="/javascript/map2.js"></script>
 <body>
 
 <!-- Navbar (sit on top) -->
