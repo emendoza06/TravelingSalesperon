@@ -20,7 +20,6 @@ var progressBarTrackRouteAccuracy = false;
 var overshotAnswer = false;
 var undershotAnswer = false;
 
-
 function setup() {
   var canvas = createCanvas(600, 229);
   canvas.parent("sketch-holder1");
@@ -47,6 +46,9 @@ function setup() {
   totalPermutations = factorial(totalCities);
   console.log(totalPermutations);
 }
+//variable to stop console logging after logged once
+var looping = 1;
+var loopingtwice = 1;
 
 function draw() {
   if (stillLooping) {
@@ -68,7 +70,7 @@ function draw() {
     for (var i = 0; i < order.length; i++) {
       var n = bestEver[i];
       shortestRoute[i] = points[n];
-      vertex(cities[n].x, cities[n].y);
+      //vertex(cities[n].x, cities[n].y);
     }
     endShape();
 
@@ -82,8 +84,6 @@ function draw() {
       vertex(cities[n].x, cities[n].y);
     }
     endShape(); */
-
-
 
     var d = calcDistance(cities, order);
     if (d < recordDistance) {
@@ -101,17 +101,18 @@ function draw() {
     text(nf(percent, 0, 2) + "% completed", 20, height / 2 - 50);
 
     nextOrder();
-  }
-
-
-
-  /*-----------After Animation Runs (User Interaction)-----------------------*/
-
-  else {
-    $('#startingnode').html("Draw the shortest route starting and ending on point  " + shortestRoute[0].label);
-    for(var s = 0; s < shortestRoute.length; s++){
-      console.log("Best route " + shortestRoute[s].label);
+  } else {
+    /*-----------After Animation Runs (User Interaction)-----------------------*/
+    $("#startingnode").html(
+      "Draw the shortest route starting and ending on point  " +
+        shortestRoute[0].label,
+    );
+    if (looping == loopingtwice) {
+      for (var s = 0; s < shortestRoute.length; s++) {
+        console.log("Best route " + shortestRoute[s].label);
+      }
     }
+    loopingtwice = loopingtwice + 1;
     background(0);
     fill(255);
     for (var p = 0; p < points.length; p++) {
@@ -122,14 +123,15 @@ function draw() {
     noFill();
     beginShape();
 
-
     for (var u = 0; u < usersRoute.length; u++) {
       vertex(usersRoute[u].x, usersRoute[u].y);
     }
     endShape();
     //If all points in route has been clicked
-    if(usersRoute.length >= 6){
-      console.log("In  under 6 function check. Array length is " + usersRoute.length);
+    if (usersRoute.length >= 6) {
+      console.log(
+        "In  under 6 function check. Array length is " + usersRoute.length,
+      );
       var userRouteFlag = false;
 
       // usersRoute = [];
@@ -139,46 +141,56 @@ function draw() {
       var answer_sum = 0;
       //Find the total route distance that user drew. Find total route distance answer.
       usersRoute.pop();
-      for(var acc = 0; acc < usersRoute.length -1; acc++){
-        user_sum += dist(usersRoute[acc].x, usersRoute[acc].y, usersRoute[acc +1].x, usersRoute[acc+1].y);
-        answer_sum += dist(shortestRoute[acc].x, shortestRoute[acc].y, shortestRoute[acc+1].x, shortestRoute[acc+1].y);
+      for (var acc = 0; acc < usersRoute.length - 1; acc++) {
+        user_sum += dist(
+          usersRoute[acc].x,
+          usersRoute[acc].y,
+          usersRoute[acc + 1].x,
+          usersRoute[acc + 1].y,
+        );
+        answer_sum += dist(
+          shortestRoute[acc].x,
+          shortestRoute[acc].y,
+          shortestRoute[acc + 1].x,
+          shortestRoute[acc + 1].y,
+        );
       }
 
       console.log("User sum is " + user_sum);
       console.log("Answer sum is " + answer_sum);
 
-      if(user_sum > answer_sum){
+      if (user_sum > answer_sum) {
         //Overshot
-        console.log("Checking for overshot. Is true " );
+        console.log("Checking for overshot. Is true ");
         overshotAnswer = true;
-      }
-      else{
+      } else {
         overshotAnswer = false;
       }
 
-      console.log("Exceeded lines to make" );
-      for(var sh = 0; sh < usersRoute.length; sh++) {
-        if(usersRoute[sh] !== shortestRoute[sh]){
+      console.log("Exceeded lines to make");
+      for (var sh = 0; sh < usersRoute.length; sh++) {
+        if (usersRoute[sh] !== shortestRoute[sh]) {
           console.log("Try Again");
-          console.log("You picked " + usersRoute[sh].label + " but the right answer is " + shortestRoute[sh].label);
+          console.log(
+            "You picked " +
+              usersRoute[sh].label +
+              " but the right answer is " +
+              shortestRoute[sh].label,
+          );
           userRouteFlag = true;
         }
       }
 
-      if(userRouteFlag === true){
+      if (userRouteFlag === true) {
         console.log("User flag outside loop is " + userRouteFlag);
-      }
-      else if(userRouteFlag === false){
-        window.setTimeout( function(){
+      } else if (userRouteFlag === false) {
+        window.setTimeout(function () {
           window.location = "/reward";
-        }, 700 );
+        }, 700);
       }
     }
-
   }
 }
-
-
 
 function swap(a, i, j) {
   var temp = a[i];
@@ -250,7 +262,6 @@ function mousePressed() {
   }
 }
 
-
 class Point {
   constructor(x, y, r, label) {
     this.x = x;
@@ -267,8 +278,11 @@ class Point {
     //If mouse is within object radius
     if (d < this.r) {
       //When point is clicked...
-      if(this.toggled === true && usersRoute.length === 5 && usersRoute[0].label === this.label)
-      {
+      if (
+        this.toggled === true &&
+        usersRoute.length === 5 &&
+        usersRoute[0].label === this.label
+      ) {
         usersRoute.push(this);
       }
       if (!this.toggled) {
@@ -279,7 +293,6 @@ class Point {
         //Idea 1
         //If mouse click is within radius of point, then push point to usersRoute array
         usersRoute.push(this);
-
       } else {
         usersRoute.pop();
         this.toggled = false;
@@ -299,38 +312,33 @@ class Point {
 }
 
 $(document).ready(function () {
-  $('#start').click(function() {
-
+  $("#start").click(function () {
     // $(this).prop("disabled",true);
     // $('.progress-bar').animate({
     //     width: "+=600px"
     // });
-    if(overshotAnswer ===true){
-      $('.progress-bar').animate({
-        width: "+=700px"
+    if (overshotAnswer === true) {
+      $(".progress-bar").animate({
+        width: "+=700px",
       });
-      $('.progress-bar').css({
-        background: "red"
+      $(".progress-bar").css({
+        background: "red",
       });
       // $("h4").html("This is a long route!");
-    }
-    else {
-      $('.progress-bar').animate({
-        width: "+=600px"
+    } else {
+      $(".progress-bar").animate({
+        width: "+=600px",
       });
-      $('.progress-bar').css({
-        background: "#14bfcc"
+      $(".progress-bar").css({
+        background: "#14bfcc",
       });
     }
   });
 
-  $('#reset').click(function() {
+  $("#reset").click(function () {
     // $(this).prop("disabled",false);
-    $('.progress-bar').css('width','0')
+    $(".progress-bar").css("width", "0");
   });
-
-
 });
 
 // line(twoPointstoLink[0], twoPointstoLink[1], twoPointstoLink[2], twoPointstoLink[3]);
-
