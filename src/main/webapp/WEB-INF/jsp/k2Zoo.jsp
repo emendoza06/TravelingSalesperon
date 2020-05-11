@@ -31,7 +31,7 @@
     src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"
   ></script>
 
-  <script type="text/javascript" src="/javascript/mapWorking.js"></script>
+  <script type="text/javascript" src="/javascript/k-2Script.js"></script>
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -73,11 +73,9 @@
 
     <div class="w3-row w3-padding-64">
         <h1><b>Traveling SalesPerson</b></h1>
-        <div id= "parentdiv" class="w3-twothird w3-container">
-
-            <!--Formula container paragraph -->
-            <p id="formulaContainer"></p>
-
+        <div class="w3-twothird w3-container">
+        <p id="formulaContainer"></p>
+           
             <!--Canvas div -->
             <div
             id="sketch-holder1" class="w3-border w3-padding-large w3-padding-64 w3-center"
@@ -98,7 +96,7 @@
             
             <style>
                 p#startingnode{
-                    color: coral;
+                    color: black;
                     font-size: 25px;
                 }
                 p{

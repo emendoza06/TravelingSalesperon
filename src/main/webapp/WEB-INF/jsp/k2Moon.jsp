@@ -20,7 +20,7 @@
     src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"
   ></script>
 
-  <script type="text/javascript" src="javascript/mapWorking.js"></script>
+  <script type="text/javascript" src="javascript/k-2Script.js"></script>
 <style>
     html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     .w3-sidebar {
@@ -61,12 +61,6 @@
     }
     p{
         font-family: Arial;
-
-    }
-    h4{
-        font-size: 40px;
-        text-align: inherit;
-        color: red;
     }
 </style>
 
@@ -74,21 +68,19 @@
 <div class="w3-main" style="margin-left:250px">
 
     <div class="w3-row w3-padding-64">
-        <h1><b>Traveling SalesPerson</b></h1>
-        <div id= "parentdiv" class="w3-twothird w3-container">
-
-            <!--Formula container paragraph -->
-            <p id="formulaContainer" style= "color: antiquewhite"></p>
-
-            <!--Canvas div -->
-            <div
-            id="sketch-holder1" class="w3-border w3-padding-large w3-padding-64 w3-center"
-            >
-
-          </div>
-
-            <h4 id=""></h4>
-        </div>
+        <h1 class="tspheader" style="color: white"><b>Traveling SalesPerson</b></h1>
+        <div class="w3-twothird w3-container">
+            <p id="formulaContainer" style="color: white" ></p>
+               
+                <!--Canvas div -->
+                <div
+                id="sketch-holder1" class="w3-border w3-padding-large w3-padding-64 w3-center"
+                >
+                
+              </div>
+    
+                <h4 id=""></h4>
+            </div>
         <div class="w3-third w3-container">
             <h1 class="w3-text-teal storytitle" style="color: black !important"><b>To the Moon and Back</b>
             <audio controls>
@@ -97,10 +89,10 @@
             </h1>
             <p>You are a brave astronaut and you're ready for lift off to the Moon! There's so much to see along your journey. What's the shortest path to the Moon, across the stars, and back? </p>
             <p id="startingnode"></p>
-
+            
             <style>
                 p#startingnode{
-                    color:black;
+                    color: black;
                     font-size: 25px;
                 }
                 p{
