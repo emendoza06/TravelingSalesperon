@@ -64,13 +64,13 @@ function draw() {
     stroke(255, 0, 255);
     strokeWeight(4);
     noFill();
-    beginShape();
+    // beginShape();
     for (var i = 0; i < order.length; i++) {
       var n = bestEver[i];
       shortestRoute[i] = points[n];
       vertex(cities[n].x, cities[n].y);
     }
-    endShape();
+    // endShape();
 
     translate(0, height / 2);
     stroke(255);
