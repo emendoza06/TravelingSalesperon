@@ -74,7 +74,7 @@
     <div class="w3-row w3-padding-64">
         <h1><b>Traveling SalesPerson</b></h1>
         <div class="w3-twothird w3-container">
-        <p id="startingNode"></p>
+        <p id="formulaContainer"></p>
            
             <!--Canvas div -->
             <div
