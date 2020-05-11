@@ -13,13 +13,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script
     language="javascript"
     type="text/javascript"
     src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"
   ></script>
 
-  <script type="text/javascript" src="javascript/map2.js"></script>
+  <script type="text/javascript" src="javascript/mapWorking.js"></script>
 <style>
     html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     .w3-sidebar {
@@ -60,6 +61,12 @@
     }
     p{
         font-family: Arial;
+        
+    }
+    h4{
+        font-size: 40px;
+        text-align: inherit;
+        color: red;
     }
 </style>
 
@@ -67,40 +74,20 @@
 <div class="w3-main" style="margin-left:250px">
 
     <div class="w3-row w3-padding-64">
-        <h1 class="tspheader" style="color: white"><b>Traveling SalesPerson</b></h1>
-        <div class="w3-twothird w3-container">
+        <h1><b>Traveling SalesPerson</b></h1>
+        <div id= "parentdiv" class="w3-twothird w3-container">
+        
+            <!--Formula container paragraph -->
+            <p id="formulaContainer" style= "color: antiquewhite"></p>
+            
+            <!--Canvas div -->
+            <div
+            id="sketch-holder1" class="w3-border w3-padding-large w3-padding-64 w3-center"
+            >
+            
+          </div>
 
-            <style>
-
-                h1{
-                    text-align: center;
-                }
-                h1.tspheader{
-                    font-size: 60px;
-                    margin-right: 700px;
-                }
-
-                h1.w3-text-teal.storytitle{
-                    font-size: 50px;
-                }
-
-                p{
-                    font-size: 20px;
-                }
-
-                canvas{
-                    padding-left: 0;
-                    padding-right: 0;
-                    margin-left: auto;
-                    margin-right: 50%;
-                    display: block;
-                    width: 530px;
-                    margin-bottom: 30px;
-                }
-            </style>
-
-            <p class="w3-border w3-padding-large w3-padding-32 w3-center">INSERT TSP FORMULA HERE</p>
-
+            <h4 id=""></h4>
         </div>
         <div class="w3-third w3-container">
             <h1 class="w3-text-teal storytitle" style="color: black !important"><b>To the Moon and Back</b>
@@ -109,6 +96,17 @@
             </audio>
             </h1>
             <p>You are a brave astronaut and you're ready for lift off to the Moon! There's so much to see along your journey. What's the shortest path to the Moon, across the stars, and back? </p>
+            <p id="startingnode"></p>
+            
+            <style>
+                p#startingnode{
+                    color:black;
+                    font-size: 25px;
+                }
+                p{
+                    font-size: 28px;
+                }
+            </style>
         </div>
 
 

@@ -21,7 +21,10 @@ var overshotAnswer = false;
 var undershotAnswer = false;
 
 function setup() {
-  var canvas = createCanvas(600, 229);
+  maxwidth = document.getElementById("sketch-holder1").offsetWidth;
+  maxheight = document.getElementById("sketch-holder1").offsetHeight;
+
+  var canvas = createCanvas(maxwidth / 1.2, maxheight + 200);
   canvas.parent("sketch-holder1");
   for (var i = 0; i < totalCities; i++) {
     var v = createVector(random(width), random(height / 2));
@@ -129,7 +132,8 @@ function draw() {
       vertex(usersRoute[u].x, usersRoute[u].y);
     }
     endShape();
-    //T
+
+    //To display the users total distance traveled
     if (usersRoute.length >= 1 && usersRoute.length < 6) {
       if (looping == loopingtwice) {
         console.log(
@@ -153,8 +157,8 @@ function draw() {
           usersRoute[acc + 1].y,
         );
       }
-      $("#startingNode").html(
-        "The total route of paths   " +
+      $("#formulaContainer").html(
+        "The total sum of paths   " +
           showFormula(clickedpoint) +
           " = " +
           user_sum,
@@ -189,8 +193,11 @@ function draw() {
           shortestRoute[acc + 1].y,
         );
       }
-      $("#startingNode").html(
-        "The total route sum is   " + showFormula(clickedpoint) + user_sum,
+      $("#formulaContainer").html(
+        "The total sum of paths   " +
+          showFormula(clickedpoint) +
+          " = " +
+          user_sum,
       );
 
       console.log("User sum is " + user_sum);
@@ -395,7 +402,7 @@ class Point {
     text(this.label, this.x - this.r / 4, this.y - this.r / 4.5);
   }
 }
-
+/*
 $(document).ready(function () {
   $("#start").click(function () {
     // $(this).prop("disabled",true);
@@ -425,5 +432,6 @@ $(document).ready(function () {
     $(".progress-bar").css("width", "0");
   });
 });
+*/
 
 // line(twoPointstoLink[0], twoPointstoLink[1], twoPointstoLink[2], twoPointstoLink[3]);
