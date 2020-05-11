@@ -189,7 +189,7 @@
             <p id="startingnode"></p>
             <style>
                 p#startingnode{
-                    color: coral;
+                    color: black;
                     font-size: 25px;
                 }
                 p{
