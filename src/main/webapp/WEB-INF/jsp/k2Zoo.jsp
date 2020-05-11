@@ -74,7 +74,7 @@
     <div class="w3-row w3-padding-64">
         <h1><b>Traveling SalesPerson</b></h1>
         <div class="w3-twothird w3-container">
-
+        <p id="startingNode"></p>
             <div class="progress-container">
                 <ul>
                     <li></li>
@@ -88,6 +88,7 @@
 
             <button class="button" id="start">Check</button>
             <button class="button" id="reset">Reset</button>
+           
 
 
 
@@ -187,6 +188,7 @@
             </h1>
             <p>It's a beautiful day at the Zoo and all of the animals are awake and ready to play! What's the shortest route to take around the Zoo before the animals take their naps?</p>
             <p id="startingnode"></p>
+            
             <style>
                 p#startingnode{
                     color: coral;
