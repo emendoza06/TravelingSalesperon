@@ -31,7 +31,7 @@
     src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"
   ></script>
 
-  <script type="text/javascript" src="/javascript/mapWorking.js"></script>
+  <script type="text/javascript" src="/javascript/3-5Script.js"></script>
 <body>
 
 <!-- Navbar (sit on top) -->
