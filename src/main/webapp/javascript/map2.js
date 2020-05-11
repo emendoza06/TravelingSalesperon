@@ -14,6 +14,8 @@ var bestEver;
 
 var stillLooping = true;
 
+var shortestRoute = [];
+
 function setup() {
   var canvas = createCanvas(600, 229);
   canvas.parent("sketch-holder1");
@@ -72,6 +74,13 @@ function draw() {
       vertex(cities[n].x, cities[n].y);
     }
     endShape(); */
+
+    //Save the shortest route found in shortest route array
+    for(var i = 0; i < order.length; i++) {
+      var n = order[i];
+      shortestRoute.push(points[n]);
+      console.log("Shortest route: " + shortestRoute[i].x + " " + shortestRoute[i].y);
+    }
 
     var d = calcDistance(cities, order);
     if (d < recordDistance) {

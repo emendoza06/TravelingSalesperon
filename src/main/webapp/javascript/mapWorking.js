@@ -1,6 +1,6 @@
 var cities = [];
 var points = [];
-var totalLines = [];
+var usersRoute = [];
 
 var totalCities = 5;
 
@@ -13,6 +13,13 @@ var recordDistance;
 var bestEver;
 
 var stillLooping = true;
+
+var shortestRoute = [];
+
+var progressBarTrackRouteAccuracy = false;
+var overshotAnswer = false;
+var undershotAnswer = false;
+
 
 function setup() {
     var canvas = createCanvas(600, 229);
@@ -28,8 +35,10 @@ function setup() {
         var label = String.fromCharCode(65 + i);
         point = new Point(x, y, r, label);
         points.push(point);
-        // totalLines.push(point);
+        // usersRoute.push(point);
     }
+
+    // saveShortestRoute();
 
     var d = calcDistance(cities, order);
     recordDistance = d;
@@ -58,6 +67,7 @@ function draw() {
         beginShape();
         for (var i = 0; i < order.length; i++) {
             var n = bestEver[i];
+            shortestRoute[i] = points[n];
             vertex(cities[n].x, cities[n].y);
         }
         endShape();
@@ -72,6 +82,8 @@ function draw() {
           vertex(cities[n].x, cities[n].y);
         }
         endShape(); */
+
+
 
         var d = calcDistance(cities, order);
         if (d < recordDistance) {
@@ -89,23 +101,84 @@ function draw() {
         text(nf(percent, 0, 2) + "% completed", 20, height / 2 - 50);
 
         nextOrder();
-    } else {
+    }
+
+
+
+    /*-----------After Animation Runs (User Interaction)-----------------------*/
+
+    else {
+        $('#startingnode').html("Draw the shortest route starting and ending on point  " + shortestRoute[0].label);
+        for(var s = 0; s < shortestRoute.length; s++){
+            console.log("Best route " + shortestRoute[s].label);
+        }
         background(0);
         fill(255);
         for (var p = 0; p < points.length; p++) {
             points[p].show();
         }
-
         stroke(255, 0, 255);
         strokeWeight(4);
         noFill();
         beginShape();
-        for (var i = 0; i < totalLines.length; i++) {
-            vertex(totalLines[i].x, totalLines[i].y);
+
+
+        for (var u = 0; u < usersRoute.length; u++) {
+            vertex(usersRoute[u].x, usersRoute[u].y);
         }
         endShape();
+        //If all points in route has been clicked
+        if(usersRoute.length >= 6){
+            console.log("In  under 6 function check. Array length is " + usersRoute.length);
+            var userRouteFlag = false;
+
+            // usersRoute = [];
+            // noStroke();
+            //Check if route path was overshot or undershot
+            var user_sum = 0;
+            var answer_sum = 0;
+            //Find the total route distance that user drew. Find total route distance answer.
+            usersRoute.pop();
+            for(var acc = 0; acc < usersRoute.length -1; acc++){
+                user_sum += dist(usersRoute[acc].x, usersRoute[acc].y, usersRoute[acc +1].x, usersRoute[acc+1].y);
+                answer_sum += dist(shortestRoute[acc].x, shortestRoute[acc].y, shortestRoute[acc+1].x, shortestRoute[acc+1].y);
+            }
+
+            console.log("User sum is " + user_sum);
+            console.log("Answer sum is " + answer_sum);
+
+            if(user_sum > answer_sum){
+                //Overshot
+                console.log("Checking for overshot. Is true " );
+                overshotAnswer = true;
+            }
+            else{
+                overshotAnswer = false;
+            }
+
+            console.log("Exceeded lines to make" );
+            for(var sh = 0; sh < usersRoute.length; sh++) {
+                if(usersRoute[sh] !== shortestRoute[sh]){
+                    console.log("Try Again");
+                    console.log("You picked " + usersRoute[sh].label + " but the right answer is " + shortestRoute[sh].label);
+                    userRouteFlag = true;
+                }
+            }
+
+            if(userRouteFlag === true){
+                console.log("User flag outside loop is " + userRouteFlag);
+            }
+            else if(userRouteFlag === false){
+                window.setTimeout( function(){
+                    window.location = "/reward";
+                }, 700 );
+            }
+        }
+
     }
 }
+
+
 
 function swap(a, i, j) {
     var temp = a[i];
@@ -177,6 +250,7 @@ function mousePressed() {
     }
 }
 
+
 class Point {
     constructor(x, y, r, label) {
         this.x = x;
@@ -193,33 +267,21 @@ class Point {
         //If mouse is within object radius
         if (d < this.r) {
             //When point is clicked...
+            if(this.toggled === true && usersRoute.length === 5 && usersRoute[0].label === this.label)
+            {
+                usersRoute.push(this);
+            }
             if (!this.toggled) {
                 this.toggled = true;
                 //change color
                 this.brightness = 255;
 
                 //Idea 1
-                //If mouse click is within radius of point, then push point to totalLines array
-                totalLines.push(this);
+                //If mouse click is within radius of point, then push point to usersRoute array
+                usersRoute.push(this);
 
-                //Idea 2
-                //if (x1 = x2 and y1 = y2) then points are equal. Pop.
-                //   if (twoPointstoLink[0] === twoPointstoLink[2] && twoPointstoLink[1] === twoPointstoLink[3]) {
-                //     console.log("Two points equal");
-                //     twoPointstoLink.pop();
-                //     twoPointstoLink.pop();
-                //
-                //   }
-                //If (x1, y1, x2, y2) points are not equal then go to linkPoints function
-                //   if (twoPointstoLink.length !==4) {
-                //     console.log("Length not four");
-                //   } else if(twoPointstoLink.length === 4 && twoPointstoLink[0] !== twoPointstoLink[2] && twoPointstoLink[1] !== twoPointstoLink[3]){
-                //       linkPoints();
-                //   }
-                //
-                //   console.log("Two points array length is " + twoPointstoLink.length);
-                //
             } else {
+                usersRoute.pop();
                 this.toggled = false;
                 this.brightness = 0;
             }
@@ -235,6 +297,40 @@ class Point {
         text(this.label, this.x - this.r / 4, this.y - this.r / 4.5);
     }
 }
+
+$(document).ready(function () {
+    $('#start').click(function() {
+
+        // $(this).prop("disabled",true);
+        // $('.progress-bar').animate({
+        //     width: "+=600px"
+        // });
+        if(overshotAnswer ===true){
+            $('.progress-bar').animate({
+                width: "+=700px"
+            });
+            $('.progress-bar').css({
+                background: "red"
+            });
+            // $("h4").html("This is a long route!");
+        }
+        else {
+            $('.progress-bar').animate({
+                width: "+=600px"
+            });
+            $('.progress-bar').css({
+                background: "#14bfcc"
+            });
+        }
+    });
+
+    $('#reset').click(function() {
+        // $(this).prop("disabled",false);
+        $('.progress-bar').css('width','0')
+    });
+
+
+});
 
 // line(twoPointstoLink[0], twoPointstoLink[1], twoPointstoLink[2], twoPointstoLink[3]);
 
