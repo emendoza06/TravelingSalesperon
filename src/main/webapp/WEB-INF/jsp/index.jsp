@@ -13,6 +13,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
 <style>
     body, html {height: 100%}
@@ -121,11 +122,69 @@
         <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">About</h1>
         <p style="font-family: Arial; font-size: 18px">The traveling salesman problem is a common exercise in computer science which presents a scenario where there exists a list of cities, and given the distance between each pair of cities, a traveler must find the shortest possible path that allows them to visit each city once and return to the starting point. The underlying idea of finding the shortest possible route between many nodes can be applied to many other situations besides cities. As well as transportation, similar ideas are relevant to circuit design where there are cost and speed advantages to using as little material as possible. There are other scientific applications for this including chemistry and genetics, and the problem itself is often used as an example for discussing NP-hard problems.
         </p>
-        <p><strong>The Team?</strong> Cooper Epstein, Andrew Riebow, Andrew Schultzbach, Safiullah Khan, and Epharra Mendoza</p>
-        <p>We are proud to help you learn.</p>
+
+        <!-- Team Container -->
+        <!-- Grid -->
+        <div class="w3-row-padding">
+        <div class="w3-center w3-padding-64">
+            <p style="font-size: 30px">We are proud to help you learn.</p>
+            <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16" style="font-size: 28px">Who We Are</span>
+
+        </div>
 
 
-    </div>
+        <!--   TEAM CARDS          -->
+            <style>
+                img{
+                    height: 300px;
+                }
+                p.teamInfo{
+                    font-family: sans-serif;
+                    font-size: 16px;
+                }
+                h3.teamName{
+                    font-size: 28px;
+                }
+                img{
+                    filter: saturate(3);
+                }
+            </style>
+            <div class="w3-row-padding">
+                <div class="w3-col l3 m6 w3-margin-bottom">
+                    <img src="../../resources/images/EpharraTeam.jpg" alt="Epharra Mendoza" style="width:100%">
+                    <h3 class="teamName">Epharra Mendoza</h3>
+                    <p class="w3-opacity teamRole">Team Lead</p>
+                    <p class="teamInfo">I'm Epharra, an undergraduate at the University of Missouri-St. Louis. I am majoring in Computer Science with a minor in Mathematics. I knew programming was for me when I realized that I could combine my creativity with my love for STEM. My favorite part about building this website was knowing that it could inspire our next generation of girls in STEM.</p>
+                </div>
+                <div class="w3-col l3 m6 w3-margin-bottom">
+                    <img src="../../resources/images/SafiTeam.jpg" alt="Safiullah Khan" style="width:100%">
+                    <h3 class="teamName">Safiullah Khan</h3>
+                    <p class="w3-opacity teamRole">Software Developer</p>
+                    <p class="teamInfo">I'm Safi, a senior undergraduate student from the University of Missouri- Saint Louis. During this project, I learned about advanced statistics, and used HTML/CSS. I chose computer science as a subject because I wanted to learn how to make video games, of course. I was excited to know more about it, how this application is created, so I took Computer Science as a subject in Class 11th. But I couldn't get a well-derived answer and I wanted to understand this all. Then, I choose computer science as a major in college.</p>
+                </div>
+                <div class="w3-col l3 m6 w3-margin-bottom">
+                    <img src="../../resources/images/AndrewR.jpg" alt="Mike" style="width:100%">
+                    <h3 class="teamName">Andrew Riebow</h3>
+                    <p class="w3-opacity teamRole">Software Tester</p>
+                    <p class="teamInfo">I'm 22 years old, and I am a senior computer science student. I like hiking, working on cars, video games, and doing programming projects at home.</p>
+                </div>
+                <div class="w3-col l3 m6 w3-margin-bottom">
+<%--                    <img src="../../resources/images/SafiTeam.jpg" alt="Dan" style="width:100%">--%>
+                    <h3 class="teamName">Cooper Epstein</h3>
+                    <p class="w3-opacity teamRole">Technical Writer</p>
+<%--                    <p class="teamInfo">Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>--%>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+</div>
 </div>
 
 
